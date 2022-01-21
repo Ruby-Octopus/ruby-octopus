@@ -21,7 +21,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Create an instance of the `OctopusClient` class by passing your Octopus API URL and an API key to it.
+
+```ruby
+example = RubyOctopus::OctopusClient.new("octopus_domain_here/api", "API-key_goes_here")
+```
+
+TODO: Add more examples, as the class gets built out more.
 
 ## Development
 

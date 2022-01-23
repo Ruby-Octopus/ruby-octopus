@@ -1,5 +1,21 @@
 # frozen_string_literal: true
 
+require "simplecov"
+
+SimpleCov.start do
+  enable_coverage :branch
+
+  # Can configure various reporting groups based on code area
+  add_group "Models", "lib/rubyoctopus/model"
+
+  # Filter out folders
+  add_filter "/spec/"
+end
+
+# Set coverage configuration; will fail spec if missed
+SimpleCov.minimum_coverage line: 90, branch: 80
+SimpleCov.minimum_coverage_by_file 70
+
 require "rubyoctopus"
 
 RSpec.configure do |config|

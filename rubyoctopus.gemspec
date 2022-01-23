@@ -2,6 +2,7 @@
 
 require_relative "lib/rubyoctopus/version"
 
+# rubocop:disable Gemspec/RequireMFA
 Gem::Specification.new do |spec|
   spec.name = "rubyoctopus"
   spec.version = RubyOctopus::VERSION
@@ -11,8 +12,6 @@ Gem::Specification.new do |spec|
   spec.summary = "RubyOctopus is a REST client for Octopus Deploy written in Ruby."
   spec.homepage = "https://github.com/Ruby-Octopus/ruby-octopus"
   spec.required_ruby_version = ">= 2.6.0"
-
-  spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage
@@ -35,3 +34,4 @@ Gem::Specification.new do |spec|
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
 end
+# rubocop:enable Gemspec/RequireMFA

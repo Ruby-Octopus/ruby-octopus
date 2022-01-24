@@ -8,7 +8,9 @@ RSpec.describe RubyOctopus::OctopusConnection do
   before(:each) do
     # Set up Faraday mock
     @faraday = double("Faraday")
-    allow(Faraday).to receive(:new).and_return(@faraday)
+    allow(@faraday).to receive(:adapter).with(Faraday.default_adapter)
+    allow(@faraday).to receive(:response).with(:json)
+    allow(Faraday).to receive(:new).and_yield(@faraday).and_return(@faraday)
 
     # Create test instance
     @conn = RubyOctopus::OctopusConnection.new(TEST_URL, TEST_API_KEY)

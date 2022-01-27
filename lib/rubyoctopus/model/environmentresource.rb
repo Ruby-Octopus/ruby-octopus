@@ -1,14 +1,16 @@
 # frozen_string_literal: true
 
+require_relative "resource"
+
 module RubyOctopus
   module Model
     # A class modeling an Environment in Octopus.
-    class EnvironmentResource
-      attr_accessor :id, :space_id, :name, :description, :sort_order, :use_guided_failure,
-                    :allow_dynamic_infrastructure, :extension_settings, :links
+    class EnvironmentResource < Resource
+      attr_accessor :space_id, :name, :description, :sort_order, :use_guided_failure,
+                    :allow_dynamic_infrastructure, :extension_settings
 
-      def initialize(attribute_values)
-        @id = attribute_values["Id"]
+      def initialize(attribute_values = {})
+        super
         @space_id = attribute_values["SpaceId"]
         @name = attribute_values["Name"]
         @description = attribute_values["Description"]
@@ -16,7 +18,6 @@ module RubyOctopus
         @use_guided_failure = attribute_values["UseGuidedFailure"]
         @allow_dynamic_infrastructure = attribute_values["AllowDynamicInfrastructure"]
         @extension_settings = attribute_values["ExtensionSettings"]
-        @links = attribute_values["Links"]
       end
     end
   end

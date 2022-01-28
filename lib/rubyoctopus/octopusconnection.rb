@@ -20,8 +20,10 @@ module RubyOctopus
       end
     end
 
-    def get(resource_type)
-      @conn.get(resource_type)
+    def get(path, params = {})
+      @conn.get(path) do |req|
+        req.params = params
+      end
     end
   end
 end

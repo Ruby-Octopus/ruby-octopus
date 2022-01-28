@@ -3,6 +3,8 @@
 TEST_URL = "http://www.example.com"
 TEST_API_KEY = "API-FAKEAPIKEY"
 TEST_PATH = "Environments"
+TEST_PARAM = "partialName"
+TEST_PARAM_VALUE = "testing"
 
 RSpec.describe RubyOctopus::OctopusConnection do
   before(:each) do
@@ -28,6 +30,17 @@ RSpec.describe RubyOctopus::OctopusConnection do
     response = @conn.get(TEST_PATH)
 
     # Assert response matches mock
+    expect(response).to be test_response
+  end
+
+  it "sends the correct query parameter" do
+    # Set up response mock
+    test_response = double("Response")
+    test_params = { TEST_PARAM => TEST_PARAM_VALUE }
+    allow(@faraday).to receive(:get).with(TEST_PATH, test_params).and_return(test_response)
+
+    response = @conn.get(TEST_PATH, test_params)
+
     expect(response).to be test_response
   end
 end

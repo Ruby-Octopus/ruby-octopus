@@ -20,8 +20,15 @@ module RubyOctopus
       end
     end
 
-    def get(resource_type)
-      @conn.get(resource_type)
+    # Makes a GET request to the given URL with the given query parameters.
+    # @param url [String] The URL to be appended on the base URL for the GET request.
+    # @param query_parameters [Hash<String, String>] A hash of query parameters for the request.
+    def get(url, query_parameters = nil)
+      if query_parameters.nil?
+        @conn.get(url)
+      else
+        @conn.get(url, query_parameters)
+      end
     end
   end
 end

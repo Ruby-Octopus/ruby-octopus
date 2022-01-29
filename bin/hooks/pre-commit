@@ -3,5 +3,10 @@ set -euo pipefail
 IFS=$'\n\t'
 set -vx
 
-# Run Rake rubocop task
-rake rubocop
+# Run Rake rubocop task if Ruby files are staged
+if [[ $(git diff --cached --name-only | grep -E '\.rb$') ]]; then
+    echo "Linting staged Ruby files"
+    rake rubocop:staged
+else
+    echo "No Ruby files staged; skipping lint"
+fi

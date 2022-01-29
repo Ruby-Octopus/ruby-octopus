@@ -12,7 +12,8 @@ response = client.connection.get("Environments")
 puts "Received a #{response.status} response from server"
 
 environments = if response.status == 200
-                 response.body["Items"].map { |item| RubyOctopus::Model::EnvironmentResource.new(item) }
+                 RubyOctopus::Model::ResourceCollection.new(response.body,
+                                                            RubyOctopus::Model::EnvironmentResource).items
                end
 
 environments.each { |environment| puts "#{environment.id}: #{environment.name}" }
